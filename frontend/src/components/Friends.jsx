@@ -22,13 +22,13 @@ const Friends = (props) => {
                     <h4 className={msgInfo?.senderId !== myId &&  msgInfo?.status !== undefined && msgInfo?.status !== 'seen'?'unseen_message Fd_name':'Fd_name' } >{fndInfo.userName}</h4>
                     <div className="msg-time">
                         {
-                            msgInfo && msgInfo.senderId === myId ? <span>You </span> : <span className={msgInfo?.senderId !== myId &&  msgInfo?.status !== undefined && msgInfo?.status !== 'seen'?'unseen_message':'' }>{fndInfo.userName + ' '}</span>
+                            // msgInfo && msgInfo.senderId === myId ? <span>You </span> : <span className={msgInfo?.senderId !== myId &&  msgInfo?.status !== undefined && msgInfo?.status !== 'seen'?'unseen_message':'' }>{fndInfo.userName + ' '}</span>
 
                         }
                         {
-                            msgInfo && msgInfo.message.text ? <span className={msgInfo?.senderId !== myId &&  msgInfo?.status !== undefined && msgInfo?.status !== 'seen'?'unseen_message':'' }>{msgInfo.message.text.slice(0, 10)}</span> : msgInfo && msgInfo.message.image ? <span>send a image</span> : <span>connect you</span>
+                            msgInfo && msgInfo.message.text ? <span className={msgInfo?.senderId !== myId &&  msgInfo?.status !== undefined && msgInfo?.status !== 'seen'?'unseen_message':'' }>{msgInfo.message.text.length > 15 ? msgInfo.message.text.slice(0, 20) + '... ' : msgInfo.message.text.slice(0, 20) + ' '}</span> : msgInfo && msgInfo.message.image ? <span>Sent an Image{'  '}</span> : <span>New Friend Suggestion</span>
                         }
-                        <span>{msgInfo ? moment(msgInfo.createdAt).startOf('mini').fromNow() : moment(fndInfo.createdAt).startOf('mini').fromNow()}</span>
+                        <span>{msgInfo ? moment(msgInfo.createdAt).startOf('mini').fromNow() : ''/*moment(fndInfo.createdAt).startOf('mini').fromNow()*/}</span>
                     </div>
                 </div>
                 {

@@ -10,7 +10,7 @@ const Message = ({ message, currentfriend, scrollRef, typingMessage }) => {
     const { myInfo } = useSelector(state => state.auth);
 
     return (
-        <>
+        <div className='message-section'>
             <div className='message-show'>
                 {
                     message && message.length > 0 ? message.map((m, index) =>
@@ -43,7 +43,7 @@ const Message = ({ message, currentfriend, scrollRef, typingMessage }) => {
                         </div>
                     ) : <div className='friend_connect'>
                         <img src={`./image/${currentfriend.image}`} alt="" />
-                        <h3>{currentfriend.userName} connect you</h3>
+                        <h3>{currentfriend.userName}</h3>
                         <span>{moment(currentfriend.createdAt).startOf('mini').fromNow()}</span>
                     </div>
                 }
@@ -64,7 +64,7 @@ const Message = ({ message, currentfriend, scrollRef, typingMessage }) => {
                 </div> : ''
             }
 
-        </>
+        </div>
     )
 }
 

@@ -23,14 +23,14 @@ const Register = ({history}) => {
 
     const [loadImage,setLoadImage] = useState('');
 
-    const inputHendle = (e) =>{
+    const handleInput = (e) =>{
         setstate({
             ...state,
             [e.target.name] : e.target.value
         })
     }
 
-    const fileHendle = e =>{
+    const handleFileUpload = e =>{
         if(e.target.files.length !==0){
             setstate({
                 ...state,
@@ -88,19 +88,19 @@ const Register = ({history}) => {
                     <form onSubmit = {register} >
                         <div className="form-group">
                             <label htmlFor="username">User Name</label>
-                            <input type="text" onChange={inputHendle} name="userName" value={state.userName} className="form-control" placeholder="user name" id="username"/>
+                            <input type="text" onChange={handleInput} name="userName" value={state.userName} className="form-control" placeholder="user name" id="username"/>
                         </div>
                         <div className="form-group">
                             <label htmlFor="email">Email</label>
-                            <input type="email" value = {state.email} name='email' onChange={inputHendle} className="form-control" placeholder="email" id="email"/>
+                            <input type="email" value = {state.email} name='email' onChange={handleInput} className="form-control" placeholder="email" id="email"/>
                         </div>
                         <div className="form-group">
                             <label htmlFor="password">Password</label>
-                            <input type="password" name = 'password' onChange={inputHendle} value = {state.password} className="form-control" placeholder="password" id="password"/>
+                            <input type="password" name = 'password' onChange={handleInput} value = {state.password} className="form-control" placeholder="password" id="password"/>
                         </div>
                         <div className="form-group">
                             <label htmlFor="confirmPassword">Confirm password</label>
-                            <input type="password" name ='confirmPassword' onChange={inputHendle} value = {state.confirmPassword} className="form-control" placeholder="confirm password" id="confirmPassword"/>
+                            <input type="password" name ='confirmPassword' onChange={handleInput} value = {state.confirmPassword} className="form-control" placeholder="confirm password" id="confirmPassword"/>
                         </div>
                         <div className="form-group">
                             <div className="file-image">
@@ -109,7 +109,7 @@ const Register = ({history}) => {
                                 </div>
                                 <div className="file">
                                     <label htmlFor="image">Select Image</label>
-                                    <input type="file" onChange={fileHendle} name="image" className="form-control" id="image"/>
+                                    <input type="file" onChange={handleFileUpload} name="image" className="form-control" id="image"/>
                                 </div>
                             </div>
                         </div>

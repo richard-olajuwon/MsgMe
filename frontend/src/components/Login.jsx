@@ -14,7 +14,7 @@ const Login = ({ history }) => {
         password: ''
     });
 
-    const inputHendle = (e) => {
+    const handleInput = (e) => {
         setState({
             ...state,
             [e.target.name]: e.target.value
@@ -49,11 +49,11 @@ const Login = ({ history }) => {
                     <form onSubmit={login}>
                         <div className="form-group">
                             <label htmlFor="email">Email</label>
-                            <input onChange={inputHendle} type="email" placeholder="email" value={state.email} name="email" id="email" className="form-control" />
+                            <input onChange={handleInput} type="email" placeholder="email" value={state.email} name="email" id="email" className="form-control" />
                         </div>
                         <div className="form-group">
                             <label htmlFor="password">Password</label>
-                            <input onChange={inputHendle} value={state.password} type="password" name="password" id="password" placeholder="password" className="form-control" />
+                            <input onChange={handleInput} value={state.password} type="password" name="password" id="password" placeholder="password" className="form-control" />
                         </div>
                         <div className="form-group">
                             <input type="submit" value="Login" className="btn" />

@@ -39,8 +39,8 @@ module.exports.userRegister = (req, res) => {
         if (password && confirmPassword && password !== confirmPassword) {
             error.push('your password and confirm password not same')
         }
-        if (password && password.length < 6) {
-            error.push('please provide password must be 6 charecter');
+        if (password && password.length < 8) {
+            error.push('please provide password must be 8 charecter');
         }
         if (Object.keys(files).length === 0) {
             error.push('please provide user image');
