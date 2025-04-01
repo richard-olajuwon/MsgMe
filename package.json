@@ -9,13 +9,10 @@
     "client-install": "cd frontend && npm install && npm run build",
     "socket-install": "cd socket && npm install",
     "socket": " cd socket && npm start",
-    "install": "npm run server-install && npm run socket-install && npm run client-install",
-    "start:prod": "concurrently \"npm run server-start\" \"npm run socket\""
+    "install": "npm run server-install && npm run client-install",
+    "start:prod": "npm run server-start"
   },
   "keywords": [],
   "author": "Richard",
-  "license": "ISC",
-  "dependencies": {
-    "concurrently": "^9.1.2"
-  }
+  "license": "ISC"
 }

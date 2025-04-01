@@ -1,6 +1,7 @@
 const express = require('express');
 
 const app = express();
+const http = require('http');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
@@ -13,6 +14,11 @@ const messengerRoute = require('./routes/messengerRoute');
 const errorHandler = require('./error-handler');
 
 require("dotenv").config();
+
+const server = http.createServer(app);
+
+// Initialize socket.io by passing the HTTP server
+const io = require('../socket/socket.js')(server);
 
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -35,6 +41,6 @@ cloudinary.config({
 
 app.use(errorHandler);
 
-app.listen(PORT,()=>{
+server.listen(PORT,()=>{
     console.log(`server is running on port ${PORT}`);
 })
