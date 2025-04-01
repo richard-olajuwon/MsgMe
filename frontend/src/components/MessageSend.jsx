@@ -29,7 +29,7 @@ const MessageSend = ({ inputHendle, newMessage, sendMessage, emojiSend, ImageSen
                 <div className="add-image">
                     Add Image
                 </div>
-                <input onChange={ImageSend} type="file" id='pic' className="form-control" />
+                <input onChange={ImageSend} type="file" accept='image/*' id='pic' className="form-control" />
                 <label htmlFor="pic"><RiGalleryLine /></label>
             </div>
             <div className="file">

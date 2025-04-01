@@ -109,7 +109,7 @@ const Register = ({history}) => {
                                 </div>
                                 <div className="file">
                                     <label htmlFor="image">Select Image</label>
-                                    <input type="file" onChange={handleFileUpload} name="image" className="form-control" id="image"/>
+                                    <input type="file" accept="image/*" onChange={handleFileUpload} name="image" className="form-control" id="image"/>
                                 </div>
                             </div>
                         </div>

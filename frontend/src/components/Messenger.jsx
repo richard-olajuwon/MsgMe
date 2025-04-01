@@ -271,7 +271,7 @@ const Messenger = () => {
                         <div className="top">
                             <div className="image-name">
                                 <div className="image">
-                                    <img src={`./image/${myInfo.image}`} alt="" />
+                                    <img src={`${myInfo.image}`} alt="" />
                                 </div>
                                 <div className="name">
                                     <h3>{myInfo.userName}</h3>

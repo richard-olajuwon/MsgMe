@@ -1,7 +1,8 @@
 const User = require('../models/authModel');
 const formidable = require('formidable');
 const messageModel = require('../models/messageModel');
-const fs = require('fs');
+const cloudinary = require("cloudinary").v2;
+
 const getLastMessage = async (myId, fdId) => {
     const msg = await messageModel.findOne({
         $or: [{
@@ -144,48 +145,34 @@ module.exports.ImageMessageSend = (req, res) => {
     const senderId = req.myId;
     const form = formidable();
 
-    form.parse(req, (err, fields, files) => {
+    form.parse(req, async (err, fields, files) => {
 
-        const {
-            senderName,
-            reseverId,
-            imageName
-        } = fields;
+        const { senderName, reseverId } = fields;
 
-        const newPath = __dirname + `../../../frontend/public/image/${imageName}`
 
-        files.image.name = imageName;
+        const image = files.image;
 
         try {
-            fs.copyFile(files.image.path, newPath, async (err) => {
-                if (err) {
-                    res.status(500).json({
-                        error: {
-                            errorMessage: 'Image upload fail'
-                        }
-                    })
-                } else {
-                    const insertMessage = await messageModel.create({
-                        senderId: senderId,
-                        senderName: senderName,
-                        reseverId: reseverId,
-                        message: {
-                            text: '',
-                            image: files.image.name
-                        }
-                    })
-                    res.status(201).json({
-                        success: true,
-                        message: insertMessage
-                    })
+            const result = await cloudinary.uploader.upload(image.path, {
+                folder: "Images",
+            });
+    
+            const imagesUrl = result.secure_url;
+            
+
+            const insertMessage = await messageModel.create({
+                senderId: senderId,
+                senderName: senderName,
+                reseverId: reseverId,
+                message: {
+                    text: '',
+                    image: imagesUrl
                 }
             })
-        } catch (error) {
-            res.status(500).json({
-                error: {
-                    errorMessage: 'Internal server error'
-                }
-            })
+            res.status(201).json({ success: true, message: insertMessage })
+        } 
+        catch (error) {
+            res.status(500).json({ error: { errorMessage: 'Internal server error' } })
         }
     })
 }

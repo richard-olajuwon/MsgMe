@@ -4,6 +4,7 @@ const app = express();
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const cloudinary = require("cloudinary").v2;
 const PORT = process.env.PORT || 5000;
 
 const databaseConnect = require('./config/database');
@@ -25,6 +26,12 @@ app.get("*", (req, res) => {
 });
 
 databaseConnect();
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 app.use(errorHandler);
 
