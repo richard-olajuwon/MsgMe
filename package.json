@@ -10,7 +10,7 @@
     "socket-install": "cd socket && npm install",
     "socket": " cd socket && npm start",
     "install": "npm run server-install && npm run socket-install && npm run client-install",
-    "start:prod": "npm run server-start"
+    "start:prod": "npm run socket && npm run server-start"
   },
   "keywords": [],
   "author": "Richard",
