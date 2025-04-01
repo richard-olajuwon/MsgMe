@@ -5,8 +5,8 @@
   "main": "backend/server.js",
   "scripts": {
     "server-start": "cd backend && npm start",
-    "server-install": "cd backend && npm install --force",
-    "client-install": "cd frontend && npm install --force && npm run build",
+    "server-install": "cd backend && npm install --legacy-peer-deps",
+    "client-install": "cd frontend && npm install --legacy-peer-deps && npm run build",
     "socket-install": "cd socket && npm install --force",
     "socket": " cd socket && npm start",
     "install": "npm run server-install && npm run socket-install && npm run client-install && npm run socket",
