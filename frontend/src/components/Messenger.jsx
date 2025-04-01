@@ -34,7 +34,8 @@ const Messenger = () => {
     const socket = useRef();
 
     useEffect(() => {
-        socket.current = io('ws://localhost:8000');
+        // listening for socket event on the backend
+        socket.current = io('/');
         socket.current.on('getMessage', (data) => {
             setSocketMessage(data);
         })
