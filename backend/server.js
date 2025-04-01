@@ -18,7 +18,7 @@ require("dotenv").config();
 const server = http.createServer(app);
 
 // Initialize socket.io by passing the HTTP server
-const io = require('../socket/socket.js')(server);
+const io = require('./socket.js')(server);
 
 app.use(bodyParser.json());
 app.use(cookieParser());
