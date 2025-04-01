@@ -5,6 +5,9 @@
     .row{
         height: 100%;
         .col-3{
+            width: 30%;
+            min-width: 300px;
+            max-width: 400px;
             .left-side{
                 padding:  5px 0px;
                 border-right: 1px solid var(--border-color);
@@ -12,6 +15,7 @@
                 flex-direction: column;
                 height: 100%;
                 justify-content: start;
+                width: 100%;
                 .top{
                     display: flex;
                     flex-direction: row;

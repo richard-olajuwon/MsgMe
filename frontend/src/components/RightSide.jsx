@@ -1,6 +1,5 @@
 import React from 'react'
 import { BsCameraVideoFill } from 'react-icons/bs'
-import { HiDotsCircleHorizontal } from 'react-icons/hi'
 import { IoCall } from 'react-icons/io5'
 import FriendInfo from './FriendInfo'
 import Message from './Message'
@@ -29,7 +28,7 @@ const RightSide = (props) => {
                             <div className="header">
                                 <div className="image-name">
                                     <div className="image">
-                                        <img src={`./image/${currentfriend.image}`} alt="" />
+                                        <img src={`${currentfriend.image}`} alt="" />
                                         {
                                             activeUser && activeUser.length > 0 && activeUser.some(u => u.userId === currentfriend._id) ? <div className="active-icon"></div> : ''
                                         }
@@ -46,9 +45,6 @@ const RightSide = (props) => {
                                     <div className="icon">
                                         <BsCameraVideoFill />
                                     </div>
-                                    <div className="icon">
-                                        <label htmlFor="dot"><HiDotsCircleHorizontal /></label>
-                                    </div>
                                 </div>
                             </div>
                             <Message typingMessage={typingMessage} currentfriend={currentfriend} scrollRef={scrollRef} message={message} />
@@ -61,9 +57,9 @@ const RightSide = (props) => {
                             />
                         </div>
                     </div>
-                    <div className="col-4">
+                    {/* <div className="col-4">
                         <FriendInfo message={message} currentfriend={currentfriend} activeUser={activeUser} />
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

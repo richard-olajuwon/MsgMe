@@ -125,7 +125,7 @@ const Messenger = () => {
         }
     }, [socketMessage])
 
-    const inputHendle = (e) => {
+    const handleInput = (e) => {
         setNewMessage(e.target.value);
 
         socket.current.emit('typingMessage', {
@@ -271,7 +271,7 @@ const Messenger = () => {
                         <div className="top">
                             <div className="image-name">
                                 <div className="image">
-                                    <img src={`./image/${myInfo.image}`} alt="" />
+                                    <img src={`${myInfo.image}`} alt="" />
                                 </div>
                                 <div className="name">
                                     <h3>{myInfo.userName}</h3>
@@ -307,12 +307,7 @@ const Messenger = () => {
                                 <input onChange={search} type="text" placeholder='search' className="form-control" />
                             </div>
                         </div>
-                        {/*<div className="active-friends">
-                            {
-                                activeUser && activeUser.length > 0 ? activeUser.map(u => <ActiveFriend setCurrentFriend={setCurrentFriend} user={u} />) : ''
-                            }
 
-                        </div>*/}
                         <div className="friends">
                             {
                                 friends && friends.length > 0 ? friends.map((fd,index) => <div key={index} onClick={() => setCurrentFriend(fd.fndInfo)} className={currentfriend._id === fd.fndInfo._id ? 'hover-friend active' : 'hover-friend'}>
@@ -328,7 +323,7 @@ const Messenger = () => {
                         activeUser={activeUser}
                         ImageSend={ImageSend}
                         currentfriend={currentfriend}
-                        inputHendle={inputHendle}
+                        inputHendle={handleInput}
                         newMessage={newMessage}
                         sendMessage={sendMessage}
                         message={message}
