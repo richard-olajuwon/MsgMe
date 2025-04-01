@@ -15,8 +15,6 @@ TODO
   - User login and register system
   - Application dark and light mode system
   
-  ![CHOOSE!](messenger.jpg)
-  
 # Following tools are used to develop the application
     
   ## Frontend Tools
