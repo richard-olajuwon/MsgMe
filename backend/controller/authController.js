@@ -16,6 +16,11 @@ module.exports.userRegister = (req, res) => {
         const { userName, email, password, confirmPassword } = fields;
         const error = [];
 
+        const hasUpperCase = /[A-Z]/.test(password);
+        const hasLowerCase = /[a-z]/.test(password);
+        const hasNumbers = /\d/.test(password);
+        const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
         if (!userName || userName === '') {
             error.push('please provide your user name');
         }
@@ -32,10 +37,13 @@ module.exports.userRegister = (req, res) => {
             error.push('please provide user confirm password');
         }
         else if (password && confirmPassword && password !== confirmPassword) {
-            error.push('your password and confirm password not same')
+            error.push('Your Password and Confirm Password do not match')
         }
         else if (password && password.length < 8) {
             error.push('please provide password must be 8 charecter');
+        }
+        else if (!hasUpperCase || !hasLowerCase || !hasNumbers || !hasSpecialChar) {
+            error.push('Password is too weak. Try including uppercase and lowercase letters, numbers, and symbols.');
         }
         else if (Object.keys(files).length === 0) {
             error.push('please provide user image');

@@ -1,7 +1,6 @@
 # Real time chat application like facebook messenger
 
-TODO
-- App works well on Laptop and Ipad screens, Make app work on mobile Screens
+Live Website can be Accessed at <a href="https://msgmeinstant.onrender.com">MsgMeInstant.onrender.com</a>
 
 # Application feature
 

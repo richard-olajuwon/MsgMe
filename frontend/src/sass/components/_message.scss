@@ -30,11 +30,13 @@
     }
     .my-message{
         float: right;
+        width: 80%;
+        max-width: 370px;
         .my-text{
             display: flex;
             align-items: flex-end;
             justify-content: flex-end;
-            width: 370px;
+            width: 100%;
             flex-direction: column;
             img.img,span{
                 width: 14px;
@@ -70,11 +72,13 @@
     }
     .fd-message{
         float:  left;
+        width: 80%;
+        max-width: 370px;
         .fd-text{
             display: flex;
             align-items: flex-end;
             justify-content: flex-start;
-            width: 370px;
+            width: 100%;
             .fd{
                 background-color: var(--fd-message-bg);
                 color: var(--text-color);
@@ -89,7 +93,6 @@
                     border-radius: 5px;
                     overflow: hidden;
                     object-fit: cover;
-
                 }
             }
         }

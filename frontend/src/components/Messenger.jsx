@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
+import { useHistory } from 'react-router-dom'; //
 import { BiSearch} from "react-icons/bi";
 
 import {BsThreeDots} from "react-icons/bs";
@@ -29,6 +30,9 @@ const Messenger = () => {
     const [typingMessage, setTypingMessage] = useState('')
 
     const [activeUser, setActiveUser] = useState([]);
+
+    const [showFirstDiv, setShowFirstDiv] = useState(true); // state to track which section is displayed on mobile width
+    const history = useHistory();
 
     const scrollRef = useRef();
     const socket = useRef();
@@ -255,6 +259,30 @@ const Messenger = () => {
             }
         }
     }
+    
+    // Set up useEffect to handle back button or navigation changes
+    useEffect(() => {
+        // Listen for location changes (like backward navigation)
+        const unlisten = history.listen(() => {
+        setShowFirstDiv(true);
+        });
+        
+        // Clean up the listener when the component is unmounted
+        // return () => {
+        // unlisten();
+        // };
+    }, [history]);
+
+    // Function to toggle between divs when clicked
+    const handleClick = () => {
+        setShowFirstDiv(!showFirstDiv); // Toggle the visibility
+        // if (showFirstDiv) {
+        // history.push('/messages'); // Navigate to a different path to simulate a page change
+        // } else {
+        // history.push('/'); // Go back to the initial path
+        //}
+    };
+
     return (
         <div className={themeMood === 'dark' ? 'messenger theme' : 'messenger'}>
             <Toaster
@@ -267,7 +295,7 @@ const Messenger = () => {
                 }}
             />
             <div className="row">
-                <div className="col-3">
+                <div className="col-3" style={{display: window.innerWidth < 600 ? showFirstDiv ? 'block' : 'none' : 'block'}}>
                     <div className="left-side">
                         <div className="top">
                             <div className="image-name">
@@ -311,7 +339,7 @@ const Messenger = () => {
 
                         <div className="friends">
                             {
-                                friends && friends.length > 0 ? friends.map((fd,index) => <div key={index} onClick={() => setCurrentFriend(fd.fndInfo)} className={currentfriend._id === fd.fndInfo._id ? 'hover-friend active' : 'hover-friend'}>
+                                friends && friends.length > 0 ? friends.map((fd,index) => <div key={index} onClick={() => {setCurrentFriend(fd.fndInfo); if(window.innerWidth < 600){handleClick()}}} className={currentfriend._id === fd.fndInfo._id ? 'hover-friend active' : 'hover-friend'}>
                                     <Friends activeUser={activeUser} myId={myInfo.id} friend={fd} />
                                 </div>) : 'no friend'
                             }
@@ -321,6 +349,7 @@ const Messenger = () => {
                 </div>
                 {
                     currentfriend ? <RightSide
+                        style={{display: window.innerWidth < 600 ? showFirstDiv ? 'none' : 'block' : 'block'}}
                         activeUser={activeUser}
                         ImageSend={ImageSend}
                         currentfriend={currentfriend}
