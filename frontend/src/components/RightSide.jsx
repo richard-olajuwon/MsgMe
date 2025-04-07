@@ -16,10 +16,11 @@ const RightSide = (props) => {
         emojiSend,
         ImageSend,
         activeUser,
-        typingMessage
+        typingMessage,
+        style
     } = props;
     return (
-        <div className='col-9'>
+        <div className='col-9' style={style}>
             <div className="right-side">
                 <input type="checkbox" id='dot' />
                 <div className="row">
