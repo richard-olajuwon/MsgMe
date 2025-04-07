@@ -1,10 +1,14 @@
 .message-send-section{
-    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 5px;
-    width: 100%;
+    width: 50%;
+    position: fixed;
+    bottom: 0;
+    @media (max-width: 600px) {
+        width: 100%;
+    }
     .file{
         display: flex;
         padding: 8px;
@@ -61,13 +65,14 @@
         height: 40px;
         background-color: var(--search-bg);
         border-radius: 50px;
-        border: none;
+        border: 1px solid black;
         align-items: center;
         .form-control{
             width: 100%;
             border-bottom-left-radius: 50px;
             border-top-left-radius: 50px;
             background-color: transparent;
+            font-size: 1rem;
             border: none;
             &::placeholder{
                 color: var(--text-color);
