@@ -23,6 +23,8 @@ const Register = ({history}) => {
 
     const [loadImage,setLoadImage] = useState('');
 
+    const [isloading, setIsLoading] = useState(false);
+
     const handleInput = (e) =>{
         setstate({
             ...state,
@@ -46,10 +48,13 @@ const Register = ({history}) => {
         reader.readAsDataURL(e.target.files[0]);
     }
 
-    const register = e =>{
+    const register = async (e) => {
+
+        e.preventDefault();
+
+        setIsLoading(true);
 
         const {userName,email,password,image,confirmPassword} = state;
-        e.preventDefault();
 
         const formData = new FormData();
 
@@ -60,7 +65,11 @@ const Register = ({history}) => {
         formData.append('image',image);
 
 
-        dispatch(userRegister(formData));
+        const registerResponse = await dispatch(userRegister(formData));
+
+        if(registerResponse.success === 'false'){
+            setIsLoading(false);
+        }
 
     }
 
@@ -114,7 +123,7 @@ const Register = ({history}) => {
                             </div>
                         </div>
                         <div className="form-group">
-                            <input type="submit" value="register" className="btn"/>
+                            <input type="submit" value={isloading ? 'Registering...' : 'Register'} className="btn" disabled = {isloading}/>
                         </div>
                         <div className="form-group">
                             <span><Link to="/messenger/login">Login Your Account</Link></span>
