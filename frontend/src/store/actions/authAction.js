@@ -25,6 +25,7 @@ export const userRegister = (data) => {
                     token: response.data.token
                 }
             })
+            return {success: 'true'}
 
         } catch (error) {
             dispatch({
@@ -33,6 +34,7 @@ export const userRegister = (data) => {
                     error: error.response.data.error.errorMessage
                 }
             })
+            return {success: 'false'}
         }
     }
 }
@@ -56,6 +58,7 @@ export const userLogin = (data) => {
                     token: response.data.token
                 }
             })
+            return {success: 'true'}
         } catch (error) {
             dispath({
                 type: USER_LOGIN_FAIL,
@@ -63,6 +66,7 @@ export const userLogin = (data) => {
                     error: error.response.data.error.errorMessage
                 }
             })
+            return {success: 'false'}
         }
     }
 }

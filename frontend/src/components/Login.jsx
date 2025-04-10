@@ -14,6 +14,8 @@ const Login = ({ history }) => {
         password: ''
     });
 
+    const [isloading, setIsLoading] = useState(false);
+
     const handleInput = (e) => {
         setState({
             ...state,
@@ -21,9 +23,13 @@ const Login = ({ history }) => {
         })
     }
 
-    const login = (e) => {
+    const login = async (e) => {
         e.preventDefault();
-        dispatch(userLogin(state))
+        setIsLoading(true);
+        const loginResponse = await dispatch(userLogin(state))
+        if(loginResponse.success === 'false'){
+            setIsLoading(false);
+        }
     }
 
     useEffect(() => {
@@ -56,7 +62,7 @@ const Login = ({ history }) => {
                             <input onChange={handleInput} value={state.password} type="password" name="password" id="password" placeholder="password" className="form-control" />
                         </div>
                         <div className="form-group">
-                            <input type="submit" value="Login" className="btn" />
+                            <input type="submit" value={isloading ? 'Logging In...' : 'Login'} className="btn" disabled = {isloading} />
                         </div>
                         <div className="form-group">
                             <span><Link to="/messenger/register">Register Your Account</Link></span>
