@@ -1,6 +1,6 @@
 # Real time chat application like facebook messenger
 
-Live Website can be Accessed at <a href="https://msgmeinstant.onrender.com">MsgMeInstant.onrender.com</a>
+Live Website can be found on my <a href="https://richardgeek.com">Portfolio</a>
 
 # Application feature
 
