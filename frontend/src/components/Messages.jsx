@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { useParams } from "react-router-dom";
 
 import RightSide from "./RightSide";
 import LeftSide from "./LeftSide";
@@ -16,7 +17,9 @@ import {
 import useSound from "use-sound";
 import notificationSound from "../audio/notification.mp3";
 
-const Messenger = () => {
+const Messages = () => {
+  const { userId } = useParams();
+
   const [notificationSPlay] = useSound(notificationSound);
   const { myInfo } = useSelector((state) => state.auth);
   const {
@@ -158,6 +161,15 @@ const Messenger = () => {
   }, [new_user_add]);
 
   useEffect(() => {
+    if (friends && friends.length > 0) {
+      //get friend info from friends list using thier userId
+      const currfriend = friends.find((friend) => friend.fndInfo._id === userId );
+      // set current friend to the current friend info
+      setCurrentFriend(currfriend.fndInfo);
+    }
+  }, [friends, userId]);
+
+  useEffect(() => {
     dispatch(getMessage(currentfriend._id));
   }, [currentfriend?._id]);
 
@@ -212,13 +224,24 @@ const Messenger = () => {
           activeUser={activeUser}
           setCurrentFriend={setCurrentFriend}
           socket={socket}
-          currentPage="HomePage"
+          currentPage="MessagePage"
         />
 
-        <RightSide currentPage="HomePage" />
+        <RightSide
+          currentfriend={currentfriend}
+          activeUser={activeUser}
+          newMessage={newMessage}
+          setNewMessage
+          message={message}
+          scrollRef={scrollRef}
+          typingMessage={typingMessage}
+          myInfo={myInfo}
+          socket={socket}
+          currentPage="MessagePage"
+        />
       </div>
     </div>
   );
 };
 
-export default Messenger;
+export default Messages;

@@ -54,18 +54,16 @@ const Login = ({ history }) => {
                 <div className="card-body">
                     <form onSubmit={login}>
                         <div className="form-group">
-                            <label htmlFor="email">Email</label>
-                            <input onChange={handleInput} type="email" placeholder="email" value={state.email} name="email" id="email" className="form-control" />
+                            <input onChange={handleInput} type="email" placeholder="Email" value={state.email} name="email" id="email" className="form-control" />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="password">Password</label>
-                            <input onChange={handleInput} value={state.password} type="password" name="password" id="password" placeholder="password" className="form-control" />
+                            <input onChange={handleInput} value={state.password} type="password" name="password" id="password" placeholder="Password" className="form-control" />
                         </div>
                         <div className="form-group">
                             <input type="submit" value={isloading ? 'Logging In...' : 'Login'} className="btn" disabled = {isloading} />
                         </div>
                         <div className="form-group">
-                            <span><Link to="/messenger/register">Register Your Account</Link></span>
+                            <span><Link to="/register">Register Your Account</Link></span>
                         </div>
                     </form>
                 </div>
